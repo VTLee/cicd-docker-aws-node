@@ -7,3 +7,5 @@ RUN apk --no-cache --upgrade add \
           nodejs-current nodejs-current-npm git openssh-client \
      && pip3 --no-cache-dir install --upgrade docker-compose awscli aws-sam-cli \
      && rm -rf /var/cache/apk/*
+# Fix "WARNING: Connection pool is full, discarding connection: " red-herring
+RUN sed -i 's/DEFAULT_POOLSIZE = 10/DEFAULT_POOLSIZE = 300/' /usr/lib/python2.7/site-packages/requests/adapters.py
