@@ -8,4 +8,4 @@ RUN apk --no-cache --upgrade add \
      && pip3 --no-cache-dir install --upgrade docker-compose awscli aws-sam-cli \
      && rm -rf /var/cache/apk/*
 # Fix "WARNING: Connection pool is full, discarding connection: " red-herring
-RUN sed -i 's/DEFAULT_POOLSIZE = 10/DEFAULT_POOLSIZE = 300/' /usr/lib/python2.7/site-packages/pip/_vendor/requests/adapters.py
+RUN sed -i 's/DEFAULT_POOLSIZE = 10/DEFAULT_POOLSIZE = 500/' /usr/lib/python3.8/site-packages/requests/adapters.py
