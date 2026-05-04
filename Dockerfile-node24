@@ -1,0 +1,16 @@
+FROM node:24-alpine
+LABEL maintainer="Lee Doughty"
+RUN apk add --no-cache --upgrade \
+          bash git curl nano jq less rsync zip unzip groff \
+          python3 python3-dev py3-pip pipx \
+          docker docker-cli-compose \
+          aws-cli \
+          # Required for pip install of aws-sam-cli and docker-compose:
+          gcc musl-dev libffi-dev \ 
+     && rm -rf /var/cache/apk/* \
+     && pipx install aws-sam-cli \
+     && pipx ensurepath
+
+WORKDIR /root
+
+ENTRYPOINT ["/bin/bash"]
