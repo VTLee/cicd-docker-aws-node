@@ -13,4 +13,4 @@ RUN apk add --no-cache --upgrade \
 
 WORKDIR /root
 
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT [ "/bin/bash", "-c" ]
